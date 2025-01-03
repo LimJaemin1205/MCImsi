@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MELCIM_MONTHLY BOOK</title>
+    <link rel="stylesheet" href="monthly_book.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=home" />
+  </head>
+  <body>
+    <button id="home-button">
+      <span class="material-symbols-outlined">home</span>
+      Home
+    </button> 
+    <div class="main-content">
+      <div class="preview-container">
+        <button class="arrow left">&lt;</button>
+        <div class="preview-track">
+          <div
+            class="preview"
+            data-description="2025년 1월호"
+            data-link="test2.html"
+          >
+            <img src="preview1.png" alt="Preview 1" />
+          </div>
+          <div
+            class="preview"
+            data-description="2025년 2월호"
+            data-link="magazine2.html"
+          >
+            <img src="preview2.png" alt="Preview 2" />
+          </div>
+          <div
+            class="preview"
+            data-description="2025년 3월호"
+            data-link="magazine3.html"
+          >
+            <img src="preview3.png" alt="Preview 3" />
+          </div>
+          <div
+            class="preview"
+            data-description="2025년 4월호"
+            data-link="magazine4.html"
+          >
+            <img src="preview4.png" alt="Preview 4" />
+          </div>
+          <div
+            class="preview"
+            data-description="2025년 5월호"
+            data-link="magazine5.html"
+          >
+            <img src="preview5.png" alt="Preview 5" />
+          </div>
+        </div>
+        <button class="arrow right">&gt;</button>
+      </div>
+    </div>
+
+    <div class="description">
+      <p id="description-text"></p>
+    </div>
+
+    <script src="monthly_book.js"></script>
+  </body>
+</html>

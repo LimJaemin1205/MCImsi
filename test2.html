@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=home" />
+    <title>Document</title>
+    <style>
+
+      body {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        background: #303030;
+      }
+
+      .page-input {
+        width: 60px;
+        padding: 5px;
+        font-size: 16px;
+        text-align: center;
+        background-color: rgba(0,0,0,0);
+      }
+
+      .page-number {
+        font-size: 18px;
+        font-weight: bold;
+      }
+
+      .return-100pro{
+        font-size: 18px;
+        font-weight: bold;
+      }
+
+      #book {
+        margin: 0 auto;
+        margin-top: 5%;
+        margin-bottom: 1%;
+        width: 1032px;
+        height: 728.4px;
+        transform-origin: center center; /* 줌 기준 설정 */
+        transition: transform 0.3s ease; /* 부드러운 줌 애니메이션 */
+      }
+
+      #book .page {
+        -webkit-background-size: 100% 100%;
+        background-size: 100% 100%;
+      }
+
+      #book div {
+        -webkit-background-size: cover;
+        background-size: cover;
+        background-position: center center;
+
+      }
+
+      .controls {
+        position: fixed; /* 화면 고정 */
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        z-index: 1000;
+        background-color: rgba(255, 255, 255, 0.3); /* 배경 색 추가 */
+        padding: 10px 20px; /* 패딩 추가 */
+        border-radius: 5px; /* 모서리 둥글게 */
+      }
+
+      input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+      }
+
+      input::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      .material-symbols-outlined {       
+        font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
+      }
+
+      /* 모달 스타일 */
+      #password-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+      }
+
+      .modal-container {
+        position: relative;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        width: 300px;
+      }
+
+      #password-modal div {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        
+      }
+
+      /* 입력창과 버튼 정렬 */
+      .modal-content {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        justify-content: center;
+        margin-top: 20px;
+      }
+
+      #password-input {
+        width: 60%;
+        padding: 10px;
+      }
+
+      #password-submit {
+        padding: 10px 20px;
+      }
+
+      .blurred {
+        filter: blur(8px); /* 블러 효과 */
+        pointer-events: none; /* 클릭 불가능 */
+        user-select: none; /* 텍스트 선택 불가능 */
+        transition: filter 0.3s ease; /* 부드러운 블러 효과 */
+      }
+
+      /* 닫기 버튼 스타일 */
+      .close-modal {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: black;
+        cursor: pointer;
+      }
+
+      #initial-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+      }
+
+      #initial-modal .modal-content {
+        position: relative;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      #initial-modal .modal-content img {
+        display: block;
+        margin: 0 auto;
+      }
+
+      #initial-modal .modal-content div {
+        margin-top: 10px;
+        text-align: center;
+      }
+
+      #initial-modal .close-modal {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: black;
+        cursor: pointer;
+      }
+
+      #initial-modal .image-container img {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 20px;
+      }
+
+      #initial-modal .checkbox-container {
+        margin-top: 10px;
+      }
+
+      #initial-modal .checkbox-container input {
+        margin-right: 10px;
+      }
+
+    </style>
+  </head>
+  <body>
+
+    <div id="initial-modal" style="display: none;">
+      <div class="modal-content">
+        <button class="close-modal">&times;</button>
+        <div class="image-container">
+          <img src="explain.png" alt="Welcome Image" />
+        </div>
+        <div class="checkbox-container">
+          <input type="checkbox" id="dont-show-again" />
+          <label for="dont-show-again">이 메시지를 24시간 동안 다시 표시하지 않기</label>
+        </div>
+      </div>
+    </div>
+
+    <div id="book">
+      <div style="height: 100%; background-color: black; display: flex; justify-content: center; align-items: center;">
+        <video autoplay muted loop controls controlslist="nodownload" style="max-width: 100%; max-height: 100%;">
+          <source src="20241225_103930.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+        <div style="background-image: url(preview2.png)"></div>
+        <div style="background-image: url(preview3.png)"></div>
+        <div style="background-image: url(preview4.png)"></div>
+        <div style="background-image: url(preview5.png)"></div>
+        <div style="background-image: url(preview6.png)"></div>
+        <div style="background-image: url(preview1.png)"></div>
+        <div style="background-image: url(preview2.png)"></div>
+        <div style="background-image: url(preview3.png)"></div>
+        <div style="background-image: url(preview4.png)"></div>
+        <div style="background-image: url(preview5.png)"></div>
+        <div style="background-image: url(preview6.png)"></div>
+        <div style="background-image: url(preview1.png)"></div>
+        <div style="background-image: url(preview2.png)"></div>
+        <div style="background-image: url(preview3.png)"></div>
+        <div style="background-image: url(preview4.png)"></div>
+        <div style="background-image: url(preview5.png)"></div>
+        <div style="background-image: url(preview6.png)"></div>
+        <div style="background-image: url(preview1.png)"></div>
+        <div style="background-image: url(preview2.png)"></div>
+        <div style="background-image: url(preview3.png)"></div>
+        <div style="background-image: url(preview4.png)"></div>
+        <div style="background-image: url(preview5.png)"></div>
+        <div style="background-image: url(preview6.png)"></div>
+        <div style="background-image: url(preview1.png)"></div>
+        <div style="background-image: url(preview2.png)"></div>
+        <div style="background-image: url(preview3.png)"></div>
+        <div style="background-image: url(preview4.png)"></div>
+        <div style="background-image: url(preview5.png)"></div>
+        <div style="background-image: url(preview6.png)"></div>
+    </div>
+    <div class="controls">
+        <button class="material-symbols-outlined">home</button>
+        <div class="page-number">Page:</div>
+        <input type="number" class="page-input" id="page-input" min="1" />
+        <div class="page-number">/ 30</div>
+        <button class="return-100pro">100%</button>
+    </div>
+    <!-- 비밀번호 모달 -->
+    <div id="password-modal">
+      <div class="modal-container">
+        <button class="close-modal">&times;</button>
+        <p id="modal-message">Enter the password to access this page:</p>
+        <div class="modal-content">
+          <input type="password" id="password-input"/>
+          <button id="password-submit">Submit</button>
+        </div>
+      </div>
+    </div>
+
+  
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.20/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/zoom.js/0.0.1/zoom.min.js"></script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>--> 
+    <script type="text/javascript" src="./turn.js"></script>
+  
+
+    <script type="text/javascript">
+      const protectedPages = {
+        4: { password: "1234", message: "구독자 전용 비밀번호를 입력하십시오." , rangeEnd: 19},
+        20: { password: "5678", message: "한정 인원 전용 비밀번호를 입력하십시오." , rangeEnd: 30},
+      };
+      let lastPage = 1; // 마지막으로 열람한 페이지 저장
+      let grantedPages = new Set(); // 접근이 허용된 페이지를 저장
+      let accessGranted = false; // 비밀번호 통과 여부 플래그
+      let isModalActive = false; // 모달 활성화 상태 확인
+
+      let currentZoom = 1; // 현재 줌 비율 (100% = 1)
+      const minZoom = 0.5; // 최소 줌 비율 (50%)
+      const maxZoom = 1.5; // 최대 줌 비율 (150%)
+      const passwordModal = document.getElementById('password-modal');
+      const closeModalButton = document.querySelector('.close-modal');
+      const passwordInput = document.getElementById('password-input');
+
+      // 줌 함수
+      function setZoom(level) {
+        if (level < minZoom || level > maxZoom) return; // 줌 범위 제한
+        currentZoom = level;
+        $("#book").css("transform", `scale(${currentZoom})`);
+        $("#book .page").css("transform", `scale(${currentZoom})`); // 개별 페이지 배율 조정
+        $("#book, #book .page").css("transform-origin", "center center");
+      }
+
+      // 줌 이벤트
+      $(document).on("wheel", function (e) {
+        e.preventDefault();
+        const delta = e.originalEvent.deltaY;
+        if (delta > 0) {
+          setZoom(currentZoom - 0.1); // 축소
+        } else {
+          setZoom(currentZoom + 0.1); // 확대
+        }
+      });
+
+      // 페이지가 로드된 후 이벤트 리스너 추가
+      document.addEventListener('DOMContentLoaded', () => {
+        // 'home' 버튼: index.html로 이동
+        const homeButton = document.querySelector('.material-symbols-outlined');
+        homeButton.addEventListener('click', () => {
+          window.location.href = 'index.html'; // index.html로 이동
+        });
+
+        // '100%' 버튼: 줌을 초기화
+        const return100Button = document.querySelector('.return-100pro');
+        return100Button.addEventListener('click', () => {
+          currentZoom = 1; // 줌 초기화
+          document.getElementById('book').style.transform = `scale(${currentZoom})`; // 줌 적용
+        });
+      });
+
+      document.addEventListener('contextmenu', (event) => {
+        event.preventDefault();  
+      });
+
+      // 페이지 넘김 이벤트
+      $('#book').turn({
+        width: 1032,
+        height: 728.4,
+        autoCenter: true,
+        display: 'double',
+        gradients: true,
+        acceleration: true,
+        when: {
+          turned: function (e, page) {
+            const total = $("#book").turn("pages");
+            $("#page-input").val(page); // 현재 페이지 표시
+            playTurnSound(); // 페이지 넘김 사운드 재생
+          },
+          turning: function (event, page) {
+            if (protectedPages[page] && !grantedPages.has(page)) {
+              event.preventDefault(); // 페이지 넘김 방지
+              showPasswordModal(page); // 비밀번호 모달 표시
+            } else {
+              lastPage = page; // 마지막 페이지 갱신
+            }
+          }
+        },
+      });
+
+      // 총 페이지 수 설정
+      const total = $('#book').turn("pages");
+      $("#page-input").attr("max", total).val(1);
+        
+      // 키보드 이벤트 통합
+      $(document).on("keydown", function (e) {
+        if (isModalActive) {
+          // 모달 활성 상태에서 동작
+          if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
+            e.preventDefault(); // 방향키 동작 차단
+          } else if (e.key === "Escape") {
+            goToPreviousPage(); // ESC 키로 모달 닫기
+          } else if (e.key === "Enter") {
+            handlePasswordSubmission(); // 엔터키로 제출
+          }
+        } else {
+          // 모달 비활성 상태에서 동작
+          if (e.key === "ArrowLeft") {
+            $("#book").turn("previous"); // 이전 페이지
+          } else if (e.key === "ArrowRight") {
+            $("#book").turn("next"); // 다음 페이지
+          } else if (e.key === "Escape") {
+            window.location.href = "index.html"; // 메인 페이지로 이동
+          }
+        }
+      });
+
+      // 페이지 입력 처리
+      $("#page-input").on("keydown", function (e) {
+        if (e.key === "Enter") {
+          const totalPages = $("#book").turn("pages");
+          let targetPage = parseInt($(this).val()) || 1;
+
+          targetPage = Math.max(1, Math.min(targetPage, totalPages));
+          $(this).val(targetPage); // 값 갱신
+
+          if (isProtectedPage(targetPage)) {
+            showPasswordModal(targetPage);
+          } else {
+            $("#book").turn("page", targetPage);
+            lastPage = targetPage;
+          }
+        }
+      });
+
+      function playTurnSound() {
+          const audio = new Audio("bookflip.mp3"); // 페이지 넘김 사운드 파일 경로
+          audio.play();
+      }
+
+      // 이전 페이지로 복귀
+      const goToPreviousPage = () => {
+        passwordModal.style.display = 'none'; // 모달 닫기
+        if (lastPage) {
+          $("#book").turn("page", lastPage); // 이전 페이지로 이동
+        }
+        isModalActive = false; // 모달 활성화 상태 해제
+      };
+
+      // 모달 닫기 버튼 클릭
+      closeModalButton.addEventListener('click', goToPreviousPage);
+
+      // ESC 키로 닫기
+      document.addEventListener('keydown', (e) => {
+        if (isModalActive && e.key === 'Escape') {
+          goToPreviousPage();
+        }
+      });
+
+      // 모달 열릴 때 입력창에 포커스
+      const showPasswordModal = (page) => {
+        const pageInfoEntry = Object.entries(protectedPages).find(
+          ([key]) => page >= parseInt(key) && page <= protectedPages[key].rangeEnd
+        );
+
+        if (pageInfoEntry) {
+          const [key, pageInfo] = pageInfoEntry;
+          document.querySelector('#password-modal p').textContent = pageInfo.message; // 메시지 설정
+          passwordModal.style.display = 'flex'; // 모달 표시
+          passwordInput.focus(); // 입력창 자동 포커스
+          passwordModal.dataset.targetPage = parseInt(key); // 대상 페이지 저장
+          isModalActive = true; // 모달 활성화 상태 설정
+        }
+      };
+
+      // 모달 활성화 시 엔터키로 제출
+      passwordInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          handlePasswordSubmission();
+        }
+      });
+
+        // 비밀번호 제출 처리
+      const handlePasswordSubmission = () => {
+        const enteredPassword = passwordInput.value;
+        const targetPage = parseInt(passwordModal.dataset.targetPage);
+        const pageInfo = protectedPages[targetPage];
+
+        if (pageInfo && enteredPassword === pageInfo.password) {
+          passwordModal.style.display = 'none'; // 모달 닫기
+          $("#book").turn("page", targetPage); // 보호 페이지로 이동
+          lastPage = targetPage; // 마지막 페이지 갱신
+          isModalActive = false; // 모달 활성화 상태 해제
+        } else {
+          passwordModal.style.display = 'none'; // 모달 닫기
+          isModalActive = false; // 모달 활성화 상태 해제
+          alert('비밀번호가 틀렸습니다.');
+          goToPreviousPage(); // 이전 페이지로 복귀
+        }
+      };
+
+        // 제출 버튼 클릭
+      document.getElementById('password-submit').addEventListener('click', handlePasswordSubmission);
+
+
+
+      // 방향키 제한
+      function disableArrowKeys(disable) {
+        if (disable) {
+          $(document).on("keydown.disableArrowKeys", function (e) {
+            if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
+              e.preventDefault(); // 기본 동작 차단
+            }
+          });
+        } else {
+          $(document).off("keydown.disableArrowKeys");
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const modal = document.getElementById("initial-modal");
+        const closeModalButton = document.querySelector(".close-modal");
+        const dontShowAgainCheckbox = document.getElementById("dont-show-again");
+
+        // 모달 표시 함수
+        const showModal = () => {
+          modal.style.display = "flex";
+        };
+
+        // 모달 닫기 함수
+        const closeModal = () => {
+          modal.style.display = "none";
+
+          // 체크박스 상태 확인
+          if (dontShowAgainCheckbox.checked) {
+            const now = new Date().getTime();
+            localStorage.setItem("lastModalView", now); // 현재 시간 저장
+          }
+        };
+
+        // 닫기 버튼 클릭 이벤트
+        closeModalButton.addEventListener("click", closeModal);
+
+        // localStorage에서 마지막 모달 본 시간 확인
+        const lastView = localStorage.getItem("lastModalView");
+        const now = new Date().getTime();
+        const oneDay = 24 * 60 * 60 * 1000; // 24시간 (밀리초)
+
+        if (!lastView || now - lastView > oneDay) {
+          showModal(); // 모달 표시
+        }
+      });
+    </script>
+  </body>
+</html>

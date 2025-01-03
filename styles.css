@@ -1,0 +1,363 @@
+/* Global styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h1,
+p,
+button {
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+}
+
+/* 네비게이션 컨테이너 */
+.nav-container {
+  display: flex;
+  align-items: center; /* 수직 중앙 정렬 */
+  justify-content: center; /* 버튼 그룹을 부모 요소 내에서 고정 위치 */
+  padding: 0 20px; /* 양쪽 패딩 추가 */
+  width: 100%; /* 전체 너비로 설정 */
+}
+
+/* 검색창 */
+.search-bar {
+  max-width: 300px;
+  width: 100%;
+  font-size: 1em;
+  border: 0px solid #ffffff; /* 추가적인 스타일 */
+  position: absolute;
+  left: 16.5%;
+}
+
+/* 버튼 스타일 */
+.nav-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center; /* 버튼을 중앙에 정렬 */
+  margin: 0; /* 마진 제거 */
+  position: relative; /* 상대적 위치로 고정 */
+}
+
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: white;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0);
+  z-index: 1000;
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  font-size: 2em;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 66%;
+}
+
+button {
+  padding: 10px 15px;
+  border: none;
+  background-color: #ffffff;
+  color: black;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+/* button:hover {
+  background-color: #555;
+} */
+
+.api-text {
+  font-style: italic;
+  padding: 10px;
+  color: lightgray;
+}
+
+/* Banner Section */
+
+/*
+.banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  background-color: #222;
+  color: white;
+  text-align: center;
+  margin: 20px auto;
+  width: 66%;
+  margin-top: 250px;
+}
+*/
+
+/* Magazines Section */
+.magazines {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 20px auto;
+  width: 66.6%;
+  gap: 2%;
+}
+
+.magazine {
+  width: 23.5%;
+  text-align: center;
+  cursor: pointer;
+}
+
+.magazine img {
+  width: 100%;
+  border-radius: 0px;
+  margin-bottom: 10px;
+}
+
+.magazine p {
+  font-size: 1em;
+}
+
+.search-results {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+@font-face {
+  font-family: "ex1";
+  src: url("./fonts/NanumGothicExtraBold.otf") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.font-bold {
+  font-family: "ex1";
+  font-size: 1.1em;
+}
+
+.font-bold:hover {
+  background-color: #555;
+}
+
+
+/* 생방송 상태 표시 */
+#live-status-container {
+  margin-top: 10px;
+  text-align: center;
+}
+
+#live-status {
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 5px;
+  background-color: #f44336; /* 기본: 생방송 아님 (빨간색) */
+  display: inline-block;
+}
+
+#live-status.live {
+  background-color: #4caf50; /* 생방송 중 (초록색) */
+}
+
+/* 배너 컨테이너 */
+.banner {
+  position: relative;
+  width: 66vw; /* 화면 너비의 66% */
+  height: 40vh; /* 원하는 높이 설정 */
+  overflow: hidden;
+  margin: auto; /* 가운데 정렬 */
+  margin-top: 12%;
+  margin-bottom: -2%;
+  border: 0px solid #ccc; /* 테두리 */
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+}
+
+/* 슬라이더 */
+.banner-slider {
+  display: flex;
+  transition: transform 0.5s ease-in-out; /* 부드러운 슬라이딩 효과 */
+  width: 300%; /* 이미지 갯수만큼 너비 설정 */
+}
+
+.banner-item {
+  position: relative;
+  width: 66vw; /* 개별 이미지 크기 */
+  height: 40vh;
+  cursor: pointer;
+}
+
+.banner-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.banner-item.no-link {
+  cursor: default; /* 링크 없는 경우 클릭 금지 */
+}
+
+/* 사이드 배너 스타일 */
+.side-banner {
+  position: fixed; /* 위치 고정 */
+  top: 30%; /* 페이지 상단에서 30% 위치 */
+  right: 8%; /* 오른쪽 끝에 배치 */
+  width: 120px; /* 배너 너비 */
+  height: 60vh; /* 배너 높이 (화면 높이의 60%) */
+  background-color: #ffffff; /* 배너 배경색 */
+  border: 0px solid #ccc; /* 테두리 */
+  box-shadow: 0 0px 0px rgba(0, 0, 0, 0.2); /* 그림자 */
+  z-index: 1000; /* 다른 요소 위에 표시 */
+  display: flex;
+  flex-direction: column; /* 요소를 세로로 배치 */
+  justify-content: space-between; /* 위-아래로 요소 정렬 */
+  align-items: center; /* 가로 중앙 정렬 */
+  overflow: hidden; /* 내용 넘침 방지 */
+  padding: 10px 0; /* 상하 여백 */
+}
+
+.side-banner img {
+  width: 100%; /* 이미지가 배너 너비에 맞게 조정 */
+  height: auto; /* 이미지 비율 유지 */
+}
+
+.side-banner a {
+  text-decoration: none; /* 링크 밑줄 제거 */
+}
+
+/* Scroll to Top 버튼 스타일 */
+#scroll-to-top {
+  margin-top: auto; /* 배너 하단에 배치 */
+  padding: 10px 15px;
+  background-color: #ffffff;
+  color: #000000;
+  border: none;
+  border-radius: 0px;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: center;
+  width: 50%; /* 버튼 너비를 배너에 맞춤 */
+}
+
+#scroll-to-top:hover {
+  background-color: #b9b9b9;
+}
+
+
+/* 모달 기본 스타일 */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* 어두운 배경 */
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  background-color: #fff;
+  padding: 30px; /* 기존보다 여백 증가 */
+  border-radius: 10px;
+  width: 92%; /* 기존 80%에서 15% 증가 */
+  max-width: 1035px; /* 기존 900px에서 15% 증가 */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.modal-content img {
+  max-width: 46%; /* 기존 40%에서 15% 증가 */
+  height: auto;
+  border-radius: 10px;
+  margin-right: 20px; /* 이미지와 텍스트 간격 유지 */
+}
+
+.modal-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  font-size: 1.1rem; /* 텍스트 크기 약간 확대 */
+  line-height: 1.6; /* 줄 간격 약간 증가 */
+}
+
+.modal-text h2 {
+  margin: 0 0 15px;
+  font-size: 1.5rem;
+}
+
+.modal-text p {
+  margin: 0 0 20px;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+#view-magazine {
+  padding: 12px 25px;
+  font-size: 1.1rem;
+  color: white;
+  background-color: #007BFF;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#view-magazine:hover {
+  background-color: #0056b3;
+}
+
+.close {
+  position: absolute; /* 콘텐츠 기준 절대 위치 */
+  top: 10px; /* 콘텐츠 내부 상단 */
+  right: 10px; /* 콘텐츠 내부 오른쪽 */
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: #000;
+}
+
+.play-audio{
+  background-color:#fff;
+}
+
+.play-audio:hover{
+  background-color:#fff;
+}
+
+.play-audio:disabled{
+  cursor:not-allowed;
+}

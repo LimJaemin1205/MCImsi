@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MELCIM</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Header Section -->
+    <header class="header">
+      <button id="play-audio">
+        <img class="title" src="main.png" />
+      </button>
+      
+      <div class="nav-container">
+        <input
+          type="text"
+          id="search-bar"
+          class="search-bar"
+          placeholder="Search..."
+          oninput="filterMagazines()"
+        />
+        <div class="nav-buttons">
+          <button class="font-bold" onclick="goToPage('index.html')">
+            MAIN
+          </button>
+          <button class="font-bold" onclick="goToPage('monthly_book.html')">
+            MONTHLY
+            <p></p>
+            BOOK
+          </button>
+          <button class="font-bold" onclick="goToPage('charmel_scut.html')">
+            CHARMEL
+            <p></p>
+            S CUT
+          </button>
+          <button
+            class="font-bold"
+            onclick="redirectTo('https://ch.sooplive.co.kr/alsdudtjdud1')"
+          >
+            SOOP
+          </button>
+          <button
+            class="font-bold"
+            onclick="redirectTo('https://www.youtube.com/@Charmel/featured')"
+          >
+            YOUTUBE
+          </button>
+        </div>
+      </div>
+
+      <nav class="navigation">
+        <!--
+        <div id="live-status-container">
+          <span id="live-status">Checking live status...</span>
+        </div>
+        -->
+      </nav>
+    </header>
+
+    <!-- Banner Section -->
+    <div class="banner">
+      <div class="banner-slider">
+        <div
+          class="banner-item"
+          data-link="https://www.youtube.com/@Charmel/featured"
+        >
+          <img src="banner1.png" alt="Banner 1" />
+        </div>
+        <div class="banner-item">
+          <img src="banner2.png" alt="Banner 2" />
+        </div>
+        <div class="banner-item">
+          <img src="banner3.png" alt="Banner 3" />
+        </div>
+      </div>
+    </div>
+
+    <div class="side-banner">
+      <a href="https://ch.sooplive.co.kr/alsdudtjdud1" target="_blank">
+        <img src="banner4.png" alt="Side Banner" />
+      </a>
+      <button id="scroll-to-top">△<br>Top</button>
+    </div>
+
+    <!-- Magazine Section -->
+    <section class="magazines" id="magazine-list" data-id="">
+      <!-- Magazine items will be dynamically rendered here -->
+    </section>
+
+    <!-- Modal for magazine preview -->
+    <div id="magazine-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <img id="modal-image" src="" alt="Magazine Preview">
+        <div class="modal-text">
+          <h2 id="modal-title">Magazine Title</h2>
+          <p id="modal-description">This is the description for the magazine.</p>
+          <button id="view-magazine">View Full Magazine</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="scripts.js"></script>
+  </body>
+</html>
